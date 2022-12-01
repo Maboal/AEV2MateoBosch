@@ -2,10 +2,10 @@
 
 namespace App\Repository;
 
-use App\Entity\Emp;
+use App\Entity\PedidosEntity;
 use App\Core\EntityManager;
 use Doctrine\ORM\EntityRepository;
 
-class EmpRepository extends EntityRepository{
+class PedidosRepository extends EntityRepository{
 
 }
