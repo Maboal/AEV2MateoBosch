@@ -3,6 +3,9 @@
 
 namespace App\Entity;
 use DateTime;
+use App\Entity\EmpresasEntity;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use App\Repository\PedidosRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -18,28 +21,40 @@ class PedidosEntity
     * @ORM\GeneratedValue
     * @ORM\Column(name="id", type="integer")
     */
-    private int $id_pedido;
+    private int $id;
 
     /**
      * @ORM\Column(name="tipo", type="string", length=1)
      */
-    private string $tipo_pedido;
+    private string $tipo;
 
     /**
     * @ORM\Column(name="fecha", type="date")
     */
-    private DateTime $fecha_pedido;
+    private DateTime $fecha;
 
     /**
     * @ORM\Column(name="observacion", type="string", length=255, nullable="true")
     */
-    private ?string $observacion_pedido;
+    private ?string $observacion;
 
     /**
-     * @ORM\Column(name="id_empresa", type="int")
+     * Many Pedidos has One Empresa
+     * @ORM\ManyToOne(targetEntity="EmpresasEntity", inversedBy="id")
+     * @ORM\JoinColumn(name="id_empresa", referencedColumnName="id")
      */
-    private int $id_empresa;
+    private EmpresasEntity $empresa;
 
+    /**
+     * One Pedido has Many lineapedido
+     * @OneToMany(targetEntity="LineasPedidosEntity", mappedBy="pedido")
+     */
+    private Collection $lineapedido;
+
+    public function __construct()
+    {
+        $this->lineapedido = new ArrayCollection();
+    }
     
     // GETTERS Y SETTERS
         

@@ -3,6 +3,7 @@
 
 namespace App\Entity;
 use DateTime;
+use App\Entity\ProductosEntity;
 use App\Repository\StockRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -55,5 +56,17 @@ class StockEntity
      */
     private string $almacen;
 
-    
+    /**
+     * Many stock have one producto
+     * @ORM\ManyToOne(targetEntity="ProductosEntity", inversedBy="producto")
+     * @JoinColumn(name="producto", referencedColumnName="codigo")
+     */
+    private ProductosEntity $StockProducto;
+
+    /**
+     * Many Stock has One Almacen
+     * @ORM\ManyToOne(targetEntity="AlmacenesEntity", inversedBy="stock")
+     * @JoinColumn(name="almacen", referencedColumnName="nombre")
+     */
+    private AlmacenesEntity $nombreAlmacen;
 }

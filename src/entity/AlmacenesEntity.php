@@ -2,6 +2,8 @@
 // src/entity/AlmacenesEntity.php
 
 namespace App\Entity;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use App\Repository\AlmacenesRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -14,9 +16,9 @@ class AlmacenesEntity
 {
     /**
     * @ORM\Id
-    * @ORM\Column(name="nombre_almacen", type="string", length=5)
+    * @ORM\Column(name="nombre", type="string", length=5)
     */
-    private string $nombre_almacen;
+    private string $nombre;
 
     /**
      * @ORM\Column(name="localizacion", type="string", length=255, nullable="true")
@@ -28,4 +30,20 @@ class AlmacenesEntity
     */
     private ?string $descripcion_almacen;
     
-}
+    /**
+     * One almacen has Many productos
+     * @OneToMany(targetEntity="ProductosEntity", mappedBy="nombreAlmacen")
+     */  
+    private Collection $producto;
+
+    /**
+     * One almacen has Many stock
+     * @OneToMany(targetEntity="StockEntity", mappedBy="nombreAlmacen")
+     */  
+    private Collection $stock;
+
+    public function __construct() {
+        $this->almacen = new ArrayCollection();
+        $this->producto = new ArrayCollection();
+    }
+}   

@@ -3,6 +3,9 @@
 
 namespace App\Entity;
 use DateTime;
+use App\Entity\PedidosEntity;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use App\Repository\FacturasRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -23,17 +26,19 @@ class FacturasEntity
     /**
      * @ORM\Column(name="fecha", type="date")
      */
-    private DateTime $fecha_factura;
+    private DateTime $fecha;
 
     /**
-    * @ORM\Column(name="id_pedido", type="int")
+    * Many Factura has One Pedido
+    * @ManyToOne(targetEntity="PedidosEntity")
+    * @JoinColumn(name="id_pedido", referencedColumnName="id")
     */
-    private $id_pedido;
+    private PedidosEntity $pedido;
 
     /**
      * @ORM\Column(name="tipo", type="string", length=2, nullable="true")
      */
-    private ?string $tipo_factura;
+    private ?string $tipo;
 
     /**
      * @ORM\Column(name="valor", type="decimal", precision=10, scale=2)
