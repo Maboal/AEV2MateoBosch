@@ -1,0 +1,27 @@
+{% extends "base.html.twig" %}
+{% block content %}
+    <h2>{{list_tittle}}</h2>
+    {% block table %}
+    <table>
+        <tbody>
+        {% for result in results %}
+        <tr>
+            <td style="color:#666699;">Descripcion</td>
+            <td style="color:#666699;">Almacen</td>
+            <td style="color:#666699;">Unidad</td>
+            <td style="color:#666699;">Clasificacion</td>
+            <td style="color:#666699;">Precio por unidad</td>
+        </tr>
+        <tr>
+            <td>{{result.getDescripcion}}</td>
+            <td>{{result.getNombreAlmacen.getNombre}}</td>
+            <td>{{result.getUnidad}}</td>
+            <td>{{result.getClasificacion}}</td>
+            <td>{{result.getPrecioUnidad}}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endblock %}
+    
+{% endblock %}

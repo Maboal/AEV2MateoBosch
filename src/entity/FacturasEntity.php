@@ -30,8 +30,8 @@ class FacturasEntity
 
     /**
     * Many Factura has One Pedido
-    * @ManyToOne(targetEntity="PedidosEntity")
-    * @JoinColumn(name="id_pedido", referencedColumnName="id")
+    * @ORM\ManyToOne(targetEntity="PedidosEntity")
+    * @ORM\JoinColumn(name="id_pedido", referencedColumnName="id")
     */
     private PedidosEntity $pedido;
 

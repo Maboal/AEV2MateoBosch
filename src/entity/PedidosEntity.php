@@ -47,7 +47,7 @@ class PedidosEntity
 
     /**
      * One Pedido has Many lineapedido
-     * @OneToMany(targetEntity="LineasPedidosEntity", mappedBy="pedido")
+     * @ORM\OneToMany(targetEntity="LineasPedidosEntity", mappedBy="pedido")
      */
     private Collection $lineapedido;
 

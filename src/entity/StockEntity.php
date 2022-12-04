@@ -59,14 +59,14 @@ class StockEntity
     /**
      * Many stock have one producto
      * @ORM\ManyToOne(targetEntity="ProductosEntity", inversedBy="producto")
-     * @JoinColumn(name="producto", referencedColumnName="codigo")
+     * @ORM\JoinColumn(name="producto", referencedColumnName="codigo")
      */
     private ProductosEntity $StockProducto;
 
     /**
      * Many Stock has One Almacen
      * @ORM\ManyToOne(targetEntity="AlmacenesEntity", inversedBy="stock")
-     * @JoinColumn(name="almacen", referencedColumnName="nombre")
+     * @ORM\JoinColumn(name="almacen", referencedColumnName="nombre")
      */
     private AlmacenesEntity $nombreAlmacen;
 }

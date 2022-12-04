@@ -43,14 +43,14 @@ class LineasPedidosEntity
     /**
      * Many Lineaspedidos tienen One Pedido
      * @ORM\ManyToOne(targetEntity="PedidosEntity", inversedBy="lineapedido")
-     * @JoinColumn(name="id_pedido", referencedColumnName="id")
+     * @ORM\JoinColumn(name="id_pedido", referencedColumnName="id")
      */
     private PedidosEntity $pedido;
 
     /**
      * Many Lineaspedidos tienen One Producto
      * @ORM\ManyToOne(targetEntity="ProductosEntity", inversedBy="lineapedido")
-     * @JoinColumn(name="codigo_producto", referencedColumnName="codigo")
+     * @ORM\JoinColumn(name="codigo_producto", referencedColumnName="codigo")
      */
     private PedidosEntity $producto;
 
