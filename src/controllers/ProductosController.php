@@ -5,7 +5,6 @@ namespace App\Controllers;
 use App\Core\AbstractController;
 use App\Core\EntityManager;
 use App\Entity\ProductosEntity;
-use App\Repository\ProductosRepository;
 
 class ProductosController extends AbstractController
 {
@@ -14,11 +13,12 @@ class ProductosController extends AbstractController
         // Obtenemos el objeto EntityManager para poder realizar la busqueda de datos
         $entityManager = (new EntityManager())->getEntityManager();
         // Obtenemos el repositorio desde la entidad y llamamos en este caso a un metodo predefinido de doctrine
-        $productos = $entityManager->getRepository(ProductosEntity::class);
+        $productosRepository = $entityManager->getRepository(ProductosEntity::class);
         // Aplicamos el metodo predefinido de doctrine
-        $data = $productos->findAll();
+        $data = $productosRepository->findAll();
         // Renderizamos mediante twig una plantilla, le pasamos los resultados del findAll()
         $this->render("list.html.twig", [
+            "table_for" => "productos",
             "list_tittle" => "Lista de Productos",
             "results" => $data
         ]);
