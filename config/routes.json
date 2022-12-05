@@ -10,5 +10,9 @@
     "/wharehouses": {
         "controller": "AlmacenesController",
         "action": "getAll"
+    },
+    "/business": {
+        "controller": "EmpresasController",
+        "action": "getAll"
     }
 }

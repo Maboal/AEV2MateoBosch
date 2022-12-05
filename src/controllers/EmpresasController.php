@@ -4,23 +4,24 @@ namespace App\Controllers;
 
 use App\Core\AbstractController;
 use App\Core\EntityManager;
-use App\Entity\Dept;
+use App\Entity\EmpresasEntity;
 
-class DeptController extends AbstractController
+class EmpresasController extends AbstractController
 {
-    public function getDept()
+    public function getAll()
     {
         // Obtenemos el objeto EntityManager para poder realizar la busqueda de datos
         $entityManager = (new EntityManager())->getEntityManager();
         // Obtenemos el repositorio desde la entidad y llamamos en este caso a un metodo predefinido de doctrine
-        $departamentos = $entityManager->getRepository(Dept::class);
+        $empresasRepository = $entityManager->getRepository(EmpresasEntity::class);
         // Aplicamos el metodo predefinido de doctrine
-        $data = $departamentos->findAll();
+        $data = $empresasRepository->findAll();
         // Renderizamos mediante twig una plantilla, le pasamos los resultados del findAll()
-        $this->render("listaDepartamentos.html.twig", [
-            "title" => "Departamentos",
-            "banner_description" => "Listado de Departamentos",
+        $this->render("list.html.twig", [
+            "table_for" => "empresas",
+            "list_tittle" => "Lista de Empresas",
             "results" => $data
         ]);
     }
+
 }

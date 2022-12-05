@@ -1,8 +1,9 @@
 {% extends "base.html.twig" %}
 {% block content %}
     <h2>{{list_tittle}}</h2>
+    {# VISTA PRODUCTOS #}
     {% if table_for == "productos" %}
-    <table border=1 frame=void rules=rows>
+    <table border=1 frame=void>
         <thead>
         <tr>
             <td style="color:#666699;">Descripcion</td>
@@ -25,8 +26,9 @@
         </tbody>
     </table>
     {% endif %}
+    {# VISTA ALMACENES #}
     {% if table_for == "almacenes" %}
-    <table border=1 frame=void rules=rows>
+    <table border=1 frame=void>
         <thead>
         <tr>
             <td style="color:#666699;">Nombre</td>
@@ -45,6 +47,32 @@
         </tbody>
     </table>
     {% endif %}
-    
+    {# VISTA EMPRESAS #}
+    {% if table_for == "empresas" %}
+    <button type="button" style="background-color:#666699;"><a href="/insert">Insertar Empresa</a></button>
+    <table border=1 frame=void>
+        <thead>
+        <tr>
+            <td style="color:#666699;">ID Empresa</td>
+            <td style="color:#666699;">Nombre</td>
+            <td style="color:#666699;">CIF</td>
+            <td style="color:#666699;">Tipo</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for result in results %}
+        <tr>
+            <td>{{result.getId}}</td>
+            <td>{{result.getNombre|capitalize}}</td>
+            <td>{{result.getCif}}</td>
+            <td>{% if result.getTipo == 0 %}Proveedor{% endif %}{% if result.getTipo == 1 %}Cliente{% endif %}</td>
+            <td><button type="button" style="background-color:#666699;"><a href="/delete/{{result.getId}}">Borrar</a></button></td>
+
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <button type="button" style="background-color:#666699;"><a href="/update">Update</a></button>
+    {% endif %}
     
 {% endblock %}
