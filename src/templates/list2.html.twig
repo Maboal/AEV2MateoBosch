@@ -1,0 +1,96 @@
+{% extends "base.html.twig" %}
+{% block content %}
+    <h2>{{list_tittle}}</h2>
+    {# VISTA PEDIDOS #}
+    {% if table_for == "pedidos" %}
+    <table border=1 frame=void>
+        <thead>
+        <tr>
+            <td style="color:#666699;">Observaciones</td>
+            <td style="color:#666699;" colspan="2">Acciones</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for result in results %}
+        <tr>
+            <td>{{result.getObservacion|capitalize}}</td>
+            <td><button type="button" style="background-color:#666699;"><a href="/orderDetail/{{result.getId}}">Ver Detalle</a></button></td>
+            <td><button type="button" style="background-color:#666699;"><a href="/invoice/{{result.getId}}">Ver Factura</a></button></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+    {# VISTA DETALLE PEDIDO #}
+    {% if table_for == "pedidoDetalle" %}
+    <table border=1 frame=void>
+        <thead>
+        <tr>
+            <td style="color:#666699;">ID</td>
+            <td style="color:#666699;">Tipo</td>                        
+            <td style="color:#666699;">Fecha</td>                                               
+            <td style="color:#666699;">Observaciones</td>
+            <td style="color:#666699;">Empresa</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>{{result.getId}}</td>
+            <td>{% if result.getTipo == "P" %}Proveedor{% endif %}{% if result.getTipo == "C" %}Cliente{% endif %}</td>
+            <td>{{result.getFecha|date("d/M/Y")}}</td>
+            <td>{{result.getObservacion|capitalize}}</td>
+            <td>{{result.getEmpresa.getNombre|capitalize}}</td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <h2>{{lineaspedidos_tittle}}</h2>
+    <table border=1 frame=void>
+        <thead>
+        <tr>
+            <td style="color:#666699;">ID Linea</td>
+            <td style="color:#666699;">ID Pedido</td>                        
+            <td style="color:#666699;">Producto</td>                                               
+            <td style="color:#666699;">Cantidad</td>
+            <td style="color:#666699;">Precio Unidad</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for resultLP in resultsLP %}
+        <tr>
+            <td>{{resultLP.getIdLinea}}</td>
+            <td>{{resultLP.getIdPedido}}</td>
+            <td>{{resultLP.getProducto.getDescripcion|capitalize}}</td>
+            <td>{{resultLP.getCantidad|number_format(2, ',', '.')}}</td>
+            <td>{{resultLP.getPrecio|number_format(2, ',', '.')}} €</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+    {# VISTA FACTURAS #}
+    {% if table_for == "facturas" %}
+    <table border=1 frame=void>
+        <thead>
+        <tr>
+            <td style="color:#666699;">ID</td>
+            <td style="color:#666699;">Fecha</td>
+            <td style="color:#666699;">ID Pedido</td>
+            <td style="color:#666699;">Tipo</td>
+            <td style="color:#666699;">Valor</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for result in results %}
+        <tr>
+            <td>{{result.getIdFactura}}</td>
+            <td>{{result.getFecha|date("d/M/Y")}}</td>
+            <td>{{result.getPedido.getId}}</td>
+            <td>{% if result.getTipo == "FC" %}Factura Compra{% endif %}{% if result.getTipo == "FV" %}Factura Venta{% endif %}</td>
+            <td>{{result.getValor|number_format(2, ',', '.')}} €</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+{% endblock %}

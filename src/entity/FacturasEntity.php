@@ -45,4 +45,84 @@ class FacturasEntity
      */
     private float $valor;
 
+
+    /**
+     * Get the value of id_factura
+     */
+    public function getIdFactura(): int
+    {
+        return $this->id_factura;
+    }
+
+    /**
+     * Get the value of fecha
+     */
+    public function getFecha(): DateTime
+    {
+        return $this->fecha;
+    }
+
+    /**
+     * Set the value of fecha
+     */
+    public function setFecha(DateTime $fecha): self
+    {
+        $this->fecha = $fecha;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of pedido
+     */
+    public function getPedido(): PedidosEntity
+    {
+        return $this->pedido;
+    }
+
+    /**
+     * Set the value of pedido
+     */
+    public function setPedido(PedidosEntity $pedido): self
+    {
+        $this->pedido = $pedido;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of tipo
+     */
+    public function getTipo(): ?string
+    {
+        return $this->tipo;
+    }
+
+    /**
+     * Set the value of tipo
+     */
+    public function setTipo(?string $tipo): self
+    {
+        $this->tipo = $tipo;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of valor
+     */
+    public function getValor(): float
+    {
+        return $this->valor;
+    }
+
+    /**
+     * Set the value of valor
+     */
+    public function setValor(float $valor): self
+    {
+        $this->valor = $valor;
+
+        return $this;
+    }
 }

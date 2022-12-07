@@ -14,5 +14,17 @@
     "/business": {
         "controller": "EmpresasController",
         "action": "getAll"
+    },
+    "/orders": {
+        "controller": "PedidosController",
+        "action": "getAll"
+    },
+    "/orderDetail": {
+        "controller": "PedidosController",
+        "action": "getDetails"
+    },
+    "/invoices": {
+        "controller": "FacturasController",
+        "action": "getAll"
     }
 }
