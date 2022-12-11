@@ -83,13 +83,58 @@
         <tbody>
         {% for result in results %}
         <tr>
-            <td>{{result.getIdFactura}}</td>
+            <td><a href="/invoice/{{result.getIdFactura}}">{{result.getIdFactura}}<a></td>
             <td>{{result.getFecha|date("d/M/Y")}}</td>
             <td>{{result.getPedido.getId}}</td>
             <td>{% if result.getTipo == "FC" %}Factura Compra{% endif %}{% if result.getTipo == "FV" %}Factura Venta{% endif %}</td>
             <td>{{result.getValor|number_format(2, ',', '.')}} €</td>
         </tr>
         {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+    {# VISTA PedidoFactura #}
+    {% if table_for == "PedidoFactura" %}
+    <h2>{{factura_tittle}}</h2>
+    <table border=1 frame=void>
+        <thead>
+        <tr>
+            <td style="color:#666699;">ID</td>
+            <td style="color:#666699;">Fecha</td>
+            <td style="color:#666699;">ID Pedido</td>
+            <td style="color:#666699;">Tipo</td>
+            <td style="color:#666699;">Valor</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>{{factura.getIdFactura}}</td>
+            <td>{{factura.getFecha|date("d/M/Y")}}</td>
+            <td>{{factura.getPedido.getId}}</td>
+            <td>{% if factura.getTipo == "FC" %}Factura Compra{% endif %}{% if factura.getTipo == "FV" %}Factura Venta{% endif %}</td>
+            <td>{{factura.getValor|number_format(2, ',', '.')}} €</td>
+        </tr>
+        </tbody>
+    </table>
+    <h2>{{pedido_tittle}}</h2>
+    <table border=1 frame=void>
+        <thead>
+        <tr>
+            <td style="color:#666699;">ID</td>
+            <td style="color:#666699;">Tipo</td>                        
+            <td style="color:#666699;">Fecha</td>                                               
+            <td style="color:#666699;">Observaciones</td>
+            <td style="color:#666699;">Empresa</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>{{pedido.getId}}</td>
+            <td>{% if pedido.getTipo == "P" %}Proveedor{% endif %}{% if pedido.getTipo == "C" %}Cliente{% endif %}</td>
+            <td>{{pedido.getFecha|date("d/M/Y")}}</td>
+            <td>{{pedido.getObservacion|capitalize}}</td>
+            <td>{{pedido.getEmpresa.getNombre|capitalize}}</td>
+        </tr>
         </tbody>
     </table>
     {% endif %}

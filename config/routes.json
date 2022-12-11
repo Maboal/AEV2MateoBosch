@@ -26,5 +26,9 @@
     "/invoices": {
         "controller": "FacturasController",
         "action": "getAll"
+    },
+    "/invoice": {
+        "controller": "FacturasController",
+        "action": "getFacturaPedido"
     }
 }

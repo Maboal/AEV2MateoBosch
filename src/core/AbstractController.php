@@ -11,6 +11,9 @@ abstract class AbstractController{
         $loader = new \Twig\Loader\FilesystemLoader(__DIR__."/../templates");
         $this->twig = new \Twig\Environment($loader);
         $this->twig->addGlobal('server_name', $_SERVER['SERVER_NAME']);
+        if (isset($_SESSION['id_factura'])){
+            $this->twig->addGlobal('id_factura', $_SESSION['id_factura']);
+        }
     }
 
     public function render($template, $params){
