@@ -15,6 +15,10 @@
         "controller": "EmpresasController",
         "action": "getAll"
     },
+    "/insert": {
+        "controller": "EmpresasController",
+        "action": "insert"
+    },
     "/orders": {
         "controller": "PedidosController",
         "action": "getAll"
