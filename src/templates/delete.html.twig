@@ -1,0 +1,9 @@
+{% extends "base.html.twig" %}
+{% block content %}
+    <form action="/delete" method="post">
+    <input type="hidden" name="id" id="id" value="{{id_empresa}}">
+    <label for="eliminar"><h2>¿Eliminar la empresa con id:{{id_empresa}}?</h2></label>
+    <input type="text" name="eliminar" placeholder="si/no">
+    <input type="submit" name="submit" value="Eliminar">
+</form>
+{% endblock %}

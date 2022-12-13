@@ -49,6 +49,7 @@
     {% endif %}
     {# VISTA EMPRESAS #}
     {% if table_for == "empresas" %}
+
     <button type="button" style="background-color:#666699;"><a href="/insert">Insertar Empresa</a></button>
     <table border=1 frame=void>
         <thead>
@@ -67,7 +68,9 @@
             <td>{{result.getNombre|capitalize}}</td>
             <td>{{result.getCif}}</td>
             <td>{% if result.getTipo == 0 %}Proveedor{% endif %}{% if result.getTipo == 1 %}Cliente{% endif %}</td>
-            <td><button type="button" style="background-color:#666699;"><a href="/update/{{result.getId}}">Update</a></button></td>
+            <form method="post" action="/business">
+                <td><button type="submit" name="id_empresa" style="background-color:#666699;" value={{result.getId}}>Update</button></td>
+            </form>
             <td><button type="button" style="background-color:#666699;"><a href="/delete/{{result.getId}}">Borrar</a></button></td>
         </tr>
         {% endfor %}

@@ -33,8 +33,6 @@ class FacturasController extends AbstractController
         $facturasRepository = $entityManager->getRepository(FacturasEntity::class);
         // Aplicamos el metodo predefinido de doctrine
         $factura = $facturasRepository->findOneBy(["id_factura"=>$id_factura]);
-        // Inciamos sesion
-        session_start();
         // agregamos a la variable de sesion el id del pedido
         $_SESSION['id_pedido'] = $factura->getPedido()->getId();
         // obtenemos resultados de la consulta al pedido que tenemos guardado en la variable de sesion

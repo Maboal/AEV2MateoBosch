@@ -19,6 +19,14 @@
         "controller": "EmpresasController",
         "action": "insert"
     },
+    "/update": {
+        "controller": "EmpresasController",
+        "action": "update"
+    },
+    "/delete": {
+        "controller": "EmpresasController",
+        "action": "delete"
+    },
     "/orders": {
         "controller": "PedidosController",
         "action": "getAll"
